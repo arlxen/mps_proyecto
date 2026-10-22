@@ -1,11 +1,7 @@
 #ifndef OPMATRIX_H
 #define OPMATRIX_H
+#include"MATRIX_TYPES.h"
 
-#define MATRIX_SIZE 5
-
-typedef int Matrix[MATRIX_SIZE][MATRIX_SIZE];
-
-void multiplicar(Matrix A, Matrix B, Matrix R);
-Matrix sumar(Matrix A, Matrix B);
-
+void sumar(Matrix A, Matrix B, Matrix R);
+void resta(Matrix A, Matrix B, Matrix R);
 #endif
