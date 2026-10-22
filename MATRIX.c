@@ -21,7 +21,7 @@ MatrixError pedirMatrizPorPantalla(Matrix matriz, const char *nombre) {
             // %lf coincide exactamente con MatrixElement (double)
             while (scanf("%lf", &matriz[i][j]) != 1) {
                 printf("[ERROR] Valor no valido. Introduce un numero para [%d][%d]: ", i + 1, j + 1);
-                while (getchar() != '\n'); // Limpiar búfer de entrada
+                while (getchar() != '\n'); // Limpiar bï¿½fer de entrada
             }
         }
     }
@@ -29,7 +29,7 @@ MatrixError pedirMatrizPorPantalla(Matrix matriz, const char *nombre) {
     return MATRIX_OK;
 }
 
-// Función para mostrar por pantalla una matriz 5x5 formateada
+// Funciï¿½n para mostrar por pantalla una matriz 5x5 formateada
 MatrixError mostrarMatriz(const Matrix matriz, const char *nombre) {
     if (matriz == NULL) {
         return MATRIX_ERROR_NULL;
@@ -67,7 +67,7 @@ int main(void) {
     int opcion = 0;
     int seleccion = 0;
 
-    // Declaración de las matrices usando el typedef 'Matrix'
+    // Declaraciï¿½n de las matrices usando el typedef 'Matrix'
     Matrix matrizA = {0};
     Matrix matrizB = {0};
     Matrix matrizR = {0}; // Matriz resultado
@@ -95,7 +95,7 @@ int main(void) {
 
         switch (opcion) {
             case 1:
-                printf("\n¿Que matriz deseas introducir? (1 para Matriz A, 2 para Matriz B): ");
+                printf("\nï¿½Que matriz deseas introducir? (1 para Matriz A, 2 para Matriz B): ");
                 if (scanf("%d", &seleccion) == 1) {
                     if (seleccion == 1) {
                         pedirMatrizPorPantalla(matrizA, "A");
