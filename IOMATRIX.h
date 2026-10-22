@@ -1,0 +1,58 @@
+
+#ifndef IOMATRIX_H
+#define IOMATRIX_H
+
+#include <stdio.h>
+
+#define FILAS 5
+#define COLUMNAS 5
+
+int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
+{
+    char nombreFichero[256];
+    FILE *fichero;
+
+    printf("Enter the filename: ");
+
+    if (scanf("%255s", nombreFichero) != 1)
+    {
+        printf("[ERROR] Invalid filename.\n");
+        return 0;
+    }
+
+    fichero = fopen(nombreFichero, "w");
+
+    if (fichero == NULL)
+    {
+        perror("[ERROR] Could not open the file");
+        return 0;
+    }
+
+    for (int i = 0; i < FILAS; i++)
+    {
+        for (int j = 0; j < COLUMNAS; j++)
+        {
+            if (fprintf(fichero, "%.2f%c",
+                        matriz[i][j],
+                        j == COLUMNAS - 1 ? '\n' : ' ') < 0)
+            {
+                fclose(fichero);
+                printf("[ERROR] Could not write the matrix.\n");
+                return 0;
+            }
+        }
+    }
+
+    if (fclose(fichero) == EOF)
+    {
+        printf("[ERROR] Could not close the file correctly.\n");
+        return 0;
+    }
+
+    printf("[OK] Matrix %c saved to %s.\n",
+           nombre, nombreFichero);
+
+    return 1;
+}
+
+#endif
