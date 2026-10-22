@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <stdio.h>
 #include <stdlib.h>
+//#include <OPMATRIX.h>
 
 #define FILAS 5
 #define COLUMNAS 5
@@ -34,11 +34,13 @@ int main(void) {
         printf("       GESTOR DE MATRICES (5x5)         \n");
         printf("========================================\n");
         printf("1. Introducir matriz por pantalla (A / B)\n");
-        printf("2. Cargar matriz desde archivo (A / B)\n");
-        printf("3. Guardar matriz en archivo\n");
-        printf("4. Mostrar matrices por pantalla\n");
-        printf("5. Realizar operaciones matematicas\n");
-        printf("6. Salir\n");
+        //printf("2. Cargar matriz desde archivo (A / B)\n");
+        //printf("3. Guardar matriz en archivo\n");
+        //printf("4. Mostrar matrices por pantalla\n");
+        //printf("5. Sumar matrices\n");
+        //printf("5. Restar matrices\n");
+        //printf("5. Multiplicar matrices\n");
+        printf("2. Salir\n");
         printf("========================================\n");
         printf("Seleccione una opcion: ");
 
@@ -62,27 +64,30 @@ int main(void) {
                     while (getchar() != '\n');
                 }
                 break;
-            case 2:
+            /*case 2:
                 printf("\n[INFO] Opcion Cargar matriz desde archivo seleccionada.\n");
                 break;
             case 3:
                 printf("\n[INFO] Opcion Guardar matriz en archivo seleccionada.\n");
                 break;
-            case 4:
+
+            case 2:
                 printf("\n[INFO] Opcion Mostrar matrices seleccionada.\n");
                 break;
-            case 5:
+            /*case 5:
                 printf("\n[INFO] Opcion Operaciones seleccionada.\n");
                 break;
-            case 6:
+                */
+            case 2:
                 printf("\nSaliendo del programa...\n");
                 break;
+
             default:
                 printf("\n[ERROR] Opcion no valida. Intente de nuevo.\n");
                 break;
         }
 
-    } while (opcion != 6);
+    } while (opcion != 2);
 
     return EXIT_SUCCESS;
 }
