@@ -1,0 +1,10 @@
+**Primeras Funcionalidades**:
+
+Se muestra por pantalla el menú con las diferentes operaciones a poder realizar. Las operaciones cargar y guardar se encuentran en un estado muy verde así que por ahora usaremos la clásica introducción de la matriz por pantalla y teclado.
+
+
+**Segunda funcionalidades**:
+
+Se muestran en el menú las opciones a poder realizar y se pueden realizar las operaciones de suma y resta.
+Además, se ha finalizado la implementación de multiplicación y producto escalar, pero no se pueden elegir aún en el menú. Las funciones de cargar, guardar desde fichero se han implementado, pero las matrices se deben aún introducir por teclado.
+Y por último, se ha implementado la visualización de matriz.
