@@ -1,0 +1,23 @@
+**Primeras Funcionalidades**:
+
+Se muestra por pantalla el menú con las diferentes operaciones a poder realizar. Las operaciones cargar y guardar se encuentran en un estado muy verde así que por ahora usaremos la clásica introducción de la matriz por pantalla y teclado.
+
+
+**Segunda funcionalidades**:
+
+Se muestran en el menú las opciones a poder realizar y se pueden realizar las operaciones de suma y resta.
+Además, se ha finalizado la implementación de multiplicación y producto escalar, pero no se pueden elegir aún en el menú. Las funciones de cargar, guardar desde fichero se han implementado, pero las matrices se deben aún introducir por teclado.
+Y por último, se ha implementado la visualización de matriz.
+
+IOMATRIX.h
+pedirMatrizPorPantalla(matrizA, 'A') - allows the user to enter matrix values through the console.
+cargarMatriz(matrizA, 'A') - loads 25 numbers from a text file. The user enters the filename, e.g. matrizA.txt.
+guardarMatriz(matrizA, 'A') - saves the matrix to a text file chosen by the user. Existing files with the same name are overwritten.
+registrarLog("SAVE", "Matrix A saved") - records an event with a timestamp in log_operaciones.txt. The log file is created automatically, and new entries are appended.
+Include the library with #include "IOMATRIX.h" and call the required function from main.c. Loading and saving functions return 1 on success and 0 on failure.
+Example text file format:
+1.00 2.00 3.00 4.00 5.00
+6.00 7.00 8.00 9.00 10.00
+11.00 12.00 13.00 14.00 15.00
+16.00 17.00 18.00 19.00 20.00
+21.00 22.00 23.00 24.00 25.00
