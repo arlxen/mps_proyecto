@@ -2,8 +2,7 @@
 
 //Pre: recibe dos matrices A y B de tamaño N x N 
 //Post: devuelve la matriz C que es el resultado de multiplicar A y B
-Matrix multiplicar(Matrix A, Matrix B) {
-    Matrix R;
+void multiplicar(Matrix A, Matrix B, Matrix R) {
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
             R[i][j] = 0; // Inicializamos a cero antes de acumular
@@ -12,7 +11,6 @@ Matrix multiplicar(Matrix A, Matrix B) {
             }
         }
     }
-    return R;
 }
 
 Matrix sumar(Matrix A, Matrix B){
