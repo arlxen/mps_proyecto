@@ -1,29 +1,25 @@
-**Primeras Funcionalidades**:
+# Gestor de Matrices en C
 
-Se muestra por pantalla el menú con las diferentes operaciones a poder realizar. Las operaciones cargar y guardar se encuentran en un estado muy verde así que por ahora usaremos la clásica introducción de la matriz por pantalla y teclado.
+Proyecto desarrollado para la gestión y realización de operaciones algebraicas con matrices.
 
+---
 
-**Segunda funcionalidades**:
+## Historial de Entregas y Evolución
 
-Se muestran en el menú las opciones a poder realizar y se pueden realizar las operaciones de suma, resta, multiplicación.
-Además, se ha finalizado la implementación de multiplicación y producto escalar, pero no se pueden elegir aún en el menú. Las funciones de cargar, guardar desde fichero se han implementado, pero las matrices se deben aún introducir por teclado.
+### Primera Entrega
+* **Menú Inicial:** Implementación de la interfaz básica por pantalla con las opciones del sistema.
+* **Entrada de Datos:** Introducción manual de los valores de la matriz por teclado y consola (`pedirMatrizPorPantalla`). Las funciones de persistencia (cargar/guardar) se mantenían en fase inicial de desarrollo.
 
-IOMATRIX.h
-pedirMatrizPorPantalla(matrizA, 'A') - allows the user to enter matrix values through the console.
-cargarMatriz(matrizA, 'A') - loads 25 numbers from a text file. The user enters the filename, e.g. matrizA.txt.
-guardarMatriz(matrizA, 'A') - saves the matrix to a text file chosen by the user. Existing files with the same name are overwritten.
-registrarLog("SAVE", "Matrix A saved") - records an event with a timestamp in log_operaciones.txt. The log file is created automatically, and new entries are appended.
-Include the library with #include "IOMATRIX.h" and call the required function from main.c. Loading and saving functions return 1 on success and 0 on failure.
-Example text file format:
-1.00 2.00 3.00 4.00 5.00
-6.00 7.00 8.00 9.00 10.00
-11.00 12.00 13.00 14.00 15.00
-16.00 17.00 18.00 19.00 20.00
-21.00 22.00 23.00 24.00 25.00
+### Segunda Entrega
+* **Operaciones Básicas:** Activación en el menú de las operaciones de **Suma**, **Resta** y **Multiplicación**.
+* **Ampliación de Funcionalidades:** Finalización de la lógica del **Producto Escalar**, aunque pendiente de integrar en las opciones del menú.
+* **Módulo de E/S (`IOMATRIX.h`):** 
+  * Carga (`cargarMatriz`) y guardado (`guardarMatriz`) de matrices desde/hacia archivos `.txt` (formato $5 \times 5$).
+  * Registro automático de eventos e historial con marca de tiempo en `log_operaciones.txt` (`registrarLog`).
 
-**Tercera funcionalidades**
-
-Se ha completado el programa incluyendo los cambios de ultima hora del cliente. 
-Las funcionalidades producto escalar y matriz simetrica se han implementado y son funcionales.
-Tambien se han implementado de forma interna control de errores en las operaciones.
-Se han realizado pruebas exhaustibas en github actions sobre el código que demuestran su correcto funcionamiento.
+### Tercera Entrega (Final)
+* **Requerimientos del Cliente:** Integración completa en el menú de las funcionalidades de **Producto Escalar** y **Comprobación de Matriz Simétrica**.
+* **Validación Integral del Menú:** Verificación y pruebas de navegación sobre todas las opciones del menú interactivo, asegurando la correcta ejecución de cada operación matemática.
+* **Pruebas de Carga y Guardado de Ficheros:** Validación completa de la funcionalidad de subida (lectura) y descarga (escritura) de matrices a través de ficheros de texto.
+* **Gestión y Control de Errores:** Implementación de un control interno de errores en las operaciones matemáticas y en la manipulación de archivos/punteros para garantizar la estabilidad de la aplicación.
+* **Integración Continua y Validación:** Ejecución de pruebas exhaustivas mediante **GitHub Actions** (`TEST_OPMATRIX.c`) para certificar el correcto funcionamiento del código entregado.

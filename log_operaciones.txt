@@ -1,0 +1,2 @@
+[2026-10-22 13:13:49] LOAD - Ejemplo.txt
+[2026-10-22 13:14:28] SAVE - MatrizB.txt

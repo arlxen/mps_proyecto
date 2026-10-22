@@ -7,6 +7,8 @@ typedef double MatrixElement;
 typedef MatrixElement Matrix[MATRIX_SIZE][MATRIX_SIZE];
 
 /* Tipos de operaciones disponibles */
+
+//No se ha usado
 typedef enum
 {
     OP_SUMAR = 1,

@@ -3,6 +3,7 @@
 
 #include "MATRIX_TYPES.h"
 #include "OPMATRIX.h"
+#include "OPMATRIX.c"
 #include "IOMATRIX.h"
 
 MatrixError pedirMatrizPorPantalla(Matrix matriz, const char *nombre)
