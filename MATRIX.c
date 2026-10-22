@@ -109,13 +109,48 @@ int main(void) {
                     while (getchar() != '\n');
                 }
                 break;
-            /*case 2:
+                /*
+            case 2: {
+                int seleccionMatriz = 0;
                 printf("\n[INFO] Opcion Cargar matriz desde archivo seleccionada.\n");
+                printf("¿En que matriz deseas cargar los datos? (1 para Matriz A, 2 para Matriz B): ");
+
+                if (scanf("%d", &seleccionMatriz) == 1) {
+                    if (seleccionMatriz == 1) {
+                        cargarMatriz(matrizA, 'A');
+                    } else if (seleccionMatriz == 2) {
+                        cargarMatriz(matrizB, 'B');
+                    } else {
+                        printf("\n[ERROR] Seleccion de matriz no valida.\n");
+                    }
+                } else {
+                    while (getchar() != '\n'); // Limpiar búfer
+                    printf("\n[ERROR] Opcion no valida.\n");
+                }
                 break;
-            case 3:
+            }
+            case 3: {
+                int seleccionMatriz = 0;
                 printf("\n[INFO] Opcion Guardar matriz en archivo seleccionada.\n");
+                printf("¿Que matriz deseas guardar? (1 para Matriz A, 2 para Matriz B, 3 para Matriz Resultado): ");
+
+                if (scanf("%d", &seleccionMatriz) == 1) {
+                    if (seleccionMatriz == 1) {
+                        guardarMatriz(matrizA, 'A');
+                    } else if (seleccionMatriz == 2) {
+                        guardarMatriz(matrizB, 'B');
+                    } else if (seleccionMatriz == 3) {
+                        guardarMatriz(matrizR, 'R');
+                    } else {
+                        printf("\n[ERROR] Seleccion de matriz no valida.\n");
+                    }
+                } else {
+                    while (getchar() != '\n'); // Limpiar búfer
+                    printf("\n[ERROR] Opcion no valida.\n");
+                }
                 break;
-                */
+            }
+            */
             case 4:
                 printf("\n[INFO] Opcion Mostrar matrices seleccionada.\n");
                 mostrarMatriz(matrizA, "A");
