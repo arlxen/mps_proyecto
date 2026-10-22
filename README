@@ -21,3 +21,10 @@ Example text file format:
 11.00 12.00 13.00 14.00 15.00
 16.00 17.00 18.00 19.00 20.00
 21.00 22.00 23.00 24.00 25.00
+
+**Tercera funcionalidades**
+
+Se ha completado el programa incluyendo los cambios de ultima hora del cliente. 
+Las funcionalidades producto escalar y matriz simetrica se han implementado y son funcionales.
+Tambien se han implementado de forma interna control de errores en las operaciones.
+Se han realizado pruebas exhaustibas en github actions sobre el código que demuestran su correcto funcionamiento.
