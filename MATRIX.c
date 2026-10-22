@@ -31,9 +31,6 @@ MatrixError pedirMatrizPorPantalla(Matrix matriz, const char *nombre) {
     return MATRIX_OK;
 }
 
-#include <stdio.h>
-#include "MATRIX_TYPES.h"
-
 // Función para mostrar por pantalla una matriz 5x5 formateada
 MatrixError mostrarMatriz(const Matrix matriz, const char *nombre) {
     if (matriz == NULL) {
@@ -55,6 +52,19 @@ MatrixError mostrarMatriz(const Matrix matriz, const char *nombre) {
     return MATRIX_OK;
 }
 
+void visualizar(Matrix A){
+    for(int i = 0; i < MATRIX_SIZE; i++){
+        for(int j = 0; j < MATRIX_SIZE; j++){
+            if (j == 0){
+                printf("| %3i |", A[i][j]);
+            }else{
+                printf(" %3i |", A[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
 int main(void) {
     int opcion = 0;
     int seleccion = 0;
@@ -74,7 +84,7 @@ int main(void) {
         printf("4. Mostrar matrices por pantalla\n");
         printf("5. Sumar matrices\n");
         printf("6. Restar matrices\n");
-        //printf("5. Multiplicar matrices\n");
+        //printf("7. Multiplicar matrices\n");
         printf("8. Salir\n");
         printf("========================================\n");
         printf("Seleccione una opcion: ");

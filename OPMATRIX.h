@@ -5,4 +5,5 @@
 void multiplicar(Matrix A, Matrix B, Matrix R);
 void sumar(Matrix A, Matrix B, Matrix R);
 void resta(Matrix A, Matrix B, Matrix R);
+void productoEscalar(Matrix A, int k, Matrix R);
 #endif
