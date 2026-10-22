@@ -11,4 +11,12 @@ void multiplicarMatrices(int A[MATRIX_SIZE][MATRIX_SIZE], int B[MATRIX_SIZE][MAT
             }
         }
     }
+Matrix sumar(Matrix A, Matrix B){
+    Matrix R;
+    for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 5; j++){
+            R[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    return R;
 }
