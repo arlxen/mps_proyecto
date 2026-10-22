@@ -1,0 +1,24 @@
+
+name: Matrix Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile tests
+        run: |
+          gcc -Wall -Wextra -Wpedantic \
+            -g -fsanitize=address,undefined \
+            -fno-omit-frame-pointer \
+            OPMATRIX.c test_opmatrix.c -o test_opmatrix
+
+      - name: Run tests
+        run: ./test_opmatrix
