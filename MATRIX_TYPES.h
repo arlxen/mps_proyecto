@@ -1,7 +1,7 @@
 
 #ifndef MATRIX_TYPES_H
 #define MATRIX_TYPES_H
-
+#include <stddef.h>
 #define MATRIX_SIZE 5
 typedef double MatrixElement;
 typedef MatrixElement Matrix[MATRIX_SIZE][MATRIX_SIZE];
