@@ -1,5 +1,7 @@
 #ifndef OPMATRIX_H
 #define OPMATRIX_H
-#include"MATRIX.c"
+#include"MATRIX_TYPES.h"
 
+void sumar(Matrix A, Matrix B, Matrix R);
+void resta(Matrix A, Matrix B, Matrix R);
 #endif
