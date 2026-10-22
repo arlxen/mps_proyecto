@@ -7,6 +7,7 @@
 #define FILAS 5
 #define COLUMNAS 5
 
+
 int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
 {
     char nombreFichero[256];
@@ -54,6 +55,7 @@ int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
 
     return 1;
 }
+
 
 int cargarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
 {
@@ -109,6 +111,41 @@ int cargarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
            nombre, nombreFichero);
 
     return 1;
+}
+
+void registrarLog(const char *operacion, const char *detalle)
+{
+    FILE *log;
+    log = fopen("log_operaciones.txt", "a");
+
+    if (log == NULL)
+    {
+        perror("[ERROR] Could not open log file");
+        return;
+    }
+
+    time_t ahora = time(NULL);
+    struct tm *fecha = localtime(&ahora);
+
+    if (fecha != NULL)
+    {
+        fprintf(log,
+                "[%04d-%02d-%02d %02d:%02d:%02d] %s - %s\n",
+                fecha->tm_year + 1900,
+                fecha->tm_mon + 1,
+                fecha->tm_mday,
+                fecha->tm_hour,
+                fecha->tm_min,
+                fecha->tm_sec,
+                operacion,
+                detalle);
+    }
+    else
+    {
+        fprintf(log, "%s - %s\n", operacion, detalle);
+    }
+
+    fclose(log);
 }
 
 #endif
