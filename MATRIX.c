@@ -1,25 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <OPMATRIX.h>
-#include"MATRIX_TYPES.h"
 
-#define FILAS 5
-#define COLUMNAS 5
+#include "OPMATRIX.h"
+#include "OPMATRIX.c"
 
-// Funciï¿½n auxiliar para leer una matriz 5x5 por consola
-void pedirMatrizPorPantalla(float matriz[FILAS][COLUMNAS], char nombre) {
-    printf("\n--- Introducir datos de la Matriz %c (%dx%d) ---\n", nombre, FILAS, COLUMNAS);
+#include "MATRIX_TYPES.h"
 
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-            printf("Matriz %c [%d][%d]: ", nombre, i + 1, j + 1);
-            while (scanf("%f", &matriz[i][j]) != 1) {
+
+MatrixError pedirMatrizPorPantalla(Matrix matriz, const char *nombre) {
+    if (matriz == NULL) {
+        return MATRIX_ERROR_NULL;
+    }
+
+    printf("\n--- Introducir datos de la Matriz %s (%dx%d) ---\n", nombre, MATRIX_SIZE, MATRIX_SIZE);
+
+    for (int i = 0; i < MATRIX_SIZE; i++) {
+        for (int j = 0; j < MATRIX_SIZE; j++) {
+            printf("Matriz %s [%d][%d]: ", nombre, i + 1, j + 1);
+
+            // %lf coincide exactamente con MatrixElement (double)
+            while (scanf("%lf", &matriz[i][j]) != 1) {
                 printf("[ERROR] Valor no valido. Introduce un numero para [%d][%d]: ", i + 1, j + 1);
-                while (getchar() != '\n'); // Limpiar bï¿½fer
+                while (getchar() != '\n'); // Limpiar búfer de entrada
             }
         }
     }
-    printf("\n[OK] Matriz %c introducida correctamente.\n", nombre);
+    printf("\n[OK] Matriz %s introducida correctamente.\n", nombre);
+    return MATRIX_OK;
+}
+
+// Función para mostrar por pantalla una matriz 5x5 formateada
+MatrixError mostrarMatriz(const Matrix matriz, const char *nombre) {
+    if (matriz == NULL) {
+        return MATRIX_ERROR_NULL;
+    }
+
+    printf("\n--- Matriz %s (%dx%d) ---\n", nombre, MATRIX_SIZE, MATRIX_SIZE);
+
+    for (int i = 0; i < MATRIX_SIZE; i++) {
+        printf("| ");
+        for (int j = 0; j < MATRIX_SIZE; j++) {
+            // %8.2lf asigna 8 espacios de ancho y 2 decimales para alinear en tabla
+            printf("%8.2lf ", matriz[i][j]);
+        }
+        printf("|\n");
+    }
+    printf("---------------------------------------------\n");
+
+    return MATRIX_OK;
 }
 
 void visualizar(Matrix A){
@@ -39,22 +67,23 @@ int main(void) {
     int opcion = 0;
     int seleccion = 0;
 
-    // Se definen las dos matrices de entrada A y B
-    float matrizA[FILAS][COLUMNAS] = {0};
-    float matrizB[FILAS][COLUMNAS] = {0};
+    // Declaración de las matrices usando el typedef 'Matrix'
+    Matrix matrizA = {0};
+    Matrix matrizB = {0};
+    Matrix matrizR = {0}; // Matriz resultado
 
     do {
         printf("\n========================================\n");
-        printf("       GESTOR DE MATRICES (5x5)         \n");
+        printf("       GESTOR DE MATRICES (%dx%d)       \n", MATRIX_SIZE, MATRIX_SIZE);
         printf("========================================\n");
         printf("1. Introducir matriz por pantalla (A / B)\n");
         //printf("2. Cargar matriz desde archivo (A / B)\n");
         //printf("3. Guardar matriz en archivo\n");
-        //printf("4. Mostrar matrices por pantalla\n");
-        //printf("5. Sumar matrices\n");
-        //printf("5. Restar matrices\n");
-        //printf("5. Multiplicar matrices\n");
-        printf("2. Salir\n");
+        printf("4. Mostrar matrices por pantalla\n");
+        printf("5. Sumar matrices\n");
+        printf("6. Restar matrices\n");
+        //printf("7. Multiplicar matrices\n");
+        printf("8. Salir\n");
         printf("========================================\n");
         printf("Seleccione una opcion: ");
 
@@ -65,12 +94,12 @@ int main(void) {
 
         switch (opcion) {
             case 1:
-                printf("\nï¿½Que matriz deseas introducir? (1 para Matriz A, 2 para Matriz B): ");
+                printf("\n¿Que matriz deseas introducir? (1 para Matriz A, 2 para Matriz B): ");
                 if (scanf("%d", &seleccion) == 1) {
                     if (seleccion == 1) {
-                        pedirMatrizPorPantalla(matrizA, 'A');
+                        pedirMatrizPorPantalla(matrizA, "A");
                     } else if (seleccion == 2) {
-                        pedirMatrizPorPantalla(matrizB, 'B');
+                        pedirMatrizPorPantalla(matrizB, "B");
                     } else {
                         printf("\n[ERROR] Seleccion no valida.\n");
                     }
@@ -84,15 +113,29 @@ int main(void) {
             case 3:
                 printf("\n[INFO] Opcion Guardar matriz en archivo seleccionada.\n");
                 break;
-
-            case 2:
-                printf("\n[INFO] Opcion Mostrar matrices seleccionada.\n");
-                break;
-            /*case 5:
-                printf("\n[INFO] Opcion Operaciones seleccionada.\n");
-                break;
                 */
-            case 2:
+            case 4:
+                printf("\n[INFO] Opcion Mostrar matrices seleccionada.\n");
+                mostrarMatriz(matrizA, "A");
+                mostrarMatriz(matrizB, "B");
+                mostrarMatriz(matrizR, "Resultado (R)");
+                break;
+            case 5:
+                printf("\n[INFO] Opcion SUMA seleccionada.\n");
+                sumar(matrizA, matrizB, matrizR);
+                mostrarMatriz(matrizR, "Resultado (R)");
+                break;
+            case 6:
+                printf("\n[INFO] Opcion RESTA seleccionada.\n");
+                resta(matrizA, matrizB, matrizR);
+                mostrarMatriz(matrizR, "Resultado (R)");
+                break;
+            case 7:
+                printf("\n[INFO] Opcion MULTIPLICACION seleccionada.\n");
+                multiplicar(matrizA, matrizB, matrizR);
+                mostrarMatriz(matrizR, "Resultado (R)");
+                break;
+            case 8:
                 printf("\nSaliendo del programa...\n");
                 break;
 
@@ -101,7 +144,7 @@ int main(void) {
                 break;
         }
 
-    } while (opcion != 2);
+    } while (opcion != 8);
 
     return EXIT_SUCCESS;
 }
