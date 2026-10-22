@@ -79,11 +79,12 @@ int main(void) {
         printf("1. Introducir matriz por pantalla (A / B)\n");
         //printf("2. Cargar matriz desde archivo (A / B)\n");
         //printf("3. Guardar matriz en archivo\n");
-        printf("4. Mostrar matrices por pantalla\n");
-        printf("5. Sumar matrices\n");
-        printf("6. Restar matrices\n");
-        //printf("7. Multiplicar matrices\n");
-        printf("8. Salir\n");
+        printf("2. Mostrar matrices por pantalla\n");
+        printf("3. Sumar matrices\n");
+        printf("4. Restar matrices\n");
+        printf("5. Multiplicar matrices\n");
+        //printf("6. Multiplicar por un escalar\n");
+        printf("6. Salir\n");
         printf("========================================\n");
         printf("Seleccione una opcion: ");
 
@@ -114,28 +115,34 @@ int main(void) {
                 printf("\n[INFO] Opcion Guardar matriz en archivo seleccionada.\n");
                 break;
                 */
-            case 4:
+            case 2:
                 printf("\n[INFO] Opcion Mostrar matrices seleccionada.\n");
                 mostrarMatriz(matrizA, "A");
                 mostrarMatriz(matrizB, "B");
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 5:
+            case 3:
                 printf("\n[INFO] Opcion SUMA seleccionada.\n");
                 sumar(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 6:
+            case 4:
                 printf("\n[INFO] Opcion RESTA seleccionada.\n");
                 resta(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 7:
+            case 5:
                 printf("\n[INFO] Opcion MULTIPLICACION seleccionada.\n");
                 multiplicar(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 8:
+            /*case 8:
+                printf("\n[INFO] Opcion MULTIPLICAR POR UN ESCALAR seleccionada.\n");
+                multiplicar(matrizA, matrizB, matrizR);
+                mostrarMatriz(matrizR, "Resultado (R)");
+                break;
+                */
+            case 6:
                 printf("\nSaliendo del programa...\n");
                 break;
 
