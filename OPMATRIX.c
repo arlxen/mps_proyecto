@@ -82,7 +82,16 @@ void gestionarErrorMatrix(MatrixError error) {
             printf("\n[ERROR OPMATRIX] Se ha producido un error desconocido (Codigo: %d).\n", error);
             break;
     }
+
+}
+
+//Pre: recibe una matriz A de tamaño N x N
+//Post: verifica si la matriz es simétrica y muestra un mensaje indicando el resultado
 void simetrica(Matrix A){
+    if (A == NULL) {
+        gestionarErrorMatrix(MATRIX_ERROR_NULL);
+        return;
+    }
     for(int i = 0; i < MATRIX_SIZE; i++){
         for(int j = i + 1; j < MATRIX_SIZE; j++){
             if(A[i][j] != A[j][i]){
