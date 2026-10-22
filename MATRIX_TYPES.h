@@ -17,7 +17,6 @@ typedef enum
 } MatrixOperation;
 
 
-
 /* Códigos de error */
 typedef enum
 {
