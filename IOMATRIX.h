@@ -3,12 +3,10 @@
 #define IOMATRIX_H
 
 #include <stdio.h>
+#include <time.h>
+#include "matrix_types.h"
 
-#define FILAS 5
-#define COLUMNAS 5
-
-
-int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
+int guardarMatriz(Matrix matriz, char nombre)
 {
     char nombreFichero[256];
     FILE *fichero;
@@ -18,7 +16,7 @@ int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
     if (scanf("%255s", nombreFichero) != 1)
     {
         printf("[ERROR] Invalid filename.\n");
-        return 0;
+        return MATRIX_ERROR_FILE_OPEN;
     }
 
     fichero = fopen(nombreFichero, "w");
@@ -26,20 +24,20 @@ int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
     if (fichero == NULL)
     {
         perror("[ERROR] Could not open the file");
-        return 0;
+        return MATRIX_ERROR_FILE_OPEN;
     }
 
-    for (int i = 0; i < FILAS; i++)
+    for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = 0; j < COLUMNAS; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
             if (fprintf(fichero, "%.2f%c",
                         matriz[i][j],
-                        j == COLUMNAS - 1 ? '\n' : ' ') < 0)
+                        j == MATRIX_SIZE - 1 ? '\n' : ' ') < 0)
             {
                 fclose(fichero);
                 printf("[ERROR] Could not write the matrix.\n");
-                return 0;
+                return MATRIX_ERROR_FILE_WRITE;
             }
         }
     }
@@ -47,28 +45,29 @@ int guardarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
     if (fclose(fichero) == EOF)
     {
         printf("[ERROR] Could not close the file correctly.\n");
-        return 0;
+        return MATRIX_ERROR_FILE_WRITE;
     }
 
     printf("[OK] Matrix %c saved to %s.\n",
            nombre, nombreFichero);
 
-    return 1;
+    registrarLog("SAVE", nombreFichero);
+
+    return MATRIX_OK;
 }
 
-
-int cargarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
+int cargarMatriz(Matrix matriz, char nombre)
 {
     char nombreFichero[256];
     FILE *fichero;
-    float matrizTemporal[FILAS][COLUMNAS];
+    Matrix matrizTemporal;
 
     printf("Enter the filename to load: ");
 
     if (scanf("%255s", nombreFichero) != 1)
     {
         printf("[ERROR] Invalid filename.\n");
-        return 0;
+        return MATRIX_ERROR_FILE_OPEN;
     }
 
     fichero = fopen(nombreFichero, "r");
@@ -76,19 +75,19 @@ int cargarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
     if (fichero == NULL)
     {
         perror("[ERROR] Could not open the file");
-        return 0;
+        return MATRIX_ERROR_FILE_OPEN;
     }
 
-    for (int i = 0; i < FILAS; i++)
+    for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = 0; j < COLUMNAS; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
-            if (fscanf(fichero, "%f",
+            if (fscanf(fichero, "%lf",
                        &matrizTemporal[i][j]) != 1)
             {
                 fclose(fichero);
                 printf("[ERROR] Invalid file or insufficient data.\n");
-                return 0;
+                return MATRIX_ERROR_FILE_READ;
             }
         }
     }
@@ -96,12 +95,12 @@ int cargarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
     if (fclose(fichero) == EOF)
     {
         printf("[ERROR] Could not close the file correctly.\n");
-        return 0;
+        return MATRIX_ERROR_FILE_READ;
     }
 
-    for (int i = 0; i < FILAS; i++)
+    for (int i = 0; i < MATRIX_SIZE; i++)
     {
-        for (int j = 0; j < COLUMNAS; j++)
+        for (int j = 0; j < MATRIX_SIZE; j++)
         {
             matriz[i][j] = matrizTemporal[i][j];
         }
@@ -110,13 +109,14 @@ int cargarMatriz(float matriz[FILAS][COLUMNAS], char nombre)
     printf("[OK] Matrix %c loaded from %s.\n",
            nombre, nombreFichero);
 
-    return 1;
+    registrarLog("LOAD", nombreFichero);
+
+    return MATRIX_OK;
 }
 
 void registrarLog(const char *operacion, const char *detalle)
 {
-    FILE *log;
-    log = fopen("log_operaciones.txt", "a");
+    FILE *log = fopen("log_operaciones.txt", "a");
 
     if (log == NULL)
     {
