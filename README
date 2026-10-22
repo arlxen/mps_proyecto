@@ -5,7 +5,7 @@ Se muestra por pantalla el menú con las diferentes operaciones a poder realizar
 
 **Segunda funcionalidades**:
 
-Se muestran en el menú las opciones a poder realizar y se pueden realizar las operaciones de suma y resta.
+Se muestran en el menú las opciones a poder realizar y se pueden realizar las operaciones de suma, resta, multiplicación.
 Además, se ha finalizado la implementación de multiplicación y producto escalar, pero no se pueden elegir aún en el menú. Las funciones de cargar, guardar desde fichero se han implementado, pero las matrices se deben aún introducir por teclado.
 Y por último, se ha implementado la visualización de matriz.
 
