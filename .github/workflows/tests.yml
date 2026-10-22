@@ -18,7 +18,7 @@ jobs:
           gcc -Wall -Wextra -Wpedantic \
             -g -fsanitize=address,undefined \
             -fno-omit-frame-pointer \
-            OPMATRIX.c test_opmatrix.c -o test_opmatrix
+            OPMATRIX.c TEST_OPMATRIX.c -o test_opmatrix
 
       - name: Run tests
         run: ./test_opmatrix
