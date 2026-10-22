@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 //#include <OPMATRIX.h>
+#include"MATRIX_TYPES.h"
 
 #define FILAS 5
 #define COLUMNAS 5
 
-// Función auxiliar para leer una matriz 5x5 por consola
+// Funciï¿½n auxiliar para leer una matriz 5x5 por consola
 void pedirMatrizPorPantalla(float matriz[FILAS][COLUMNAS], char nombre) {
     printf("\n--- Introducir datos de la Matriz %c (%dx%d) ---\n", nombre, FILAS, COLUMNAS);
 
@@ -14,11 +15,24 @@ void pedirMatrizPorPantalla(float matriz[FILAS][COLUMNAS], char nombre) {
             printf("Matriz %c [%d][%d]: ", nombre, i + 1, j + 1);
             while (scanf("%f", &matriz[i][j]) != 1) {
                 printf("[ERROR] Valor no valido. Introduce un numero para [%d][%d]: ", i + 1, j + 1);
-                while (getchar() != '\n'); // Limpiar búfer
+                while (getchar() != '\n'); // Limpiar bï¿½fer
             }
         }
     }
     printf("\n[OK] Matriz %c introducida correctamente.\n", nombre);
+}
+
+void visualizar(Matrix A){
+    for(int i = 0; i < MATRIX_SIZE; i++){
+        for(int j = 0; j < MATRIX_SIZE; j++){
+            if (j == 0){
+                printf("| %3i |", A[i][j]);
+            }else{
+                printf(" %3i |", A[i][j]);
+            }
+        }
+        printf("\n");
+    }
 }
 
 int main(void) {
@@ -51,7 +65,7 @@ int main(void) {
 
         switch (opcion) {
             case 1:
-                printf("\n¿Que matriz deseas introducir? (1 para Matriz A, 2 para Matriz B): ");
+                printf("\nï¿½Que matriz deseas introducir? (1 para Matriz A, 2 para Matriz B): ");
                 if (scanf("%d", &seleccion) == 1) {
                     if (seleccion == 1) {
                         pedirMatrizPorPantalla(matrizA, 'A');
