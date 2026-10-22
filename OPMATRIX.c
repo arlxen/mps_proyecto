@@ -42,3 +42,15 @@ void productoEscalar(Matrix A, int k, Matrix R) {
         }
     }
 }
+
+void simetrica(Matrix A){
+    for(int i = 0; i < MATRIX_SIZE; i++){
+        for(int j = i + 1; j < MATRIX_SIZE; j++){
+            if(A[i][j] != A[j][i]){
+                printf("La Matriz no es simetrica. \n");
+                return;
+            }
+        }
+    }
+    printf("La Matriz es simetrica. \n");
+}
