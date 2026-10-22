@@ -6,8 +6,6 @@
 
 #include "MATRIX_TYPES.h"
 
-#define FILAS 5
-#define COLUMNAS 5
 
 MatrixError pedirMatrizPorPantalla(Matrix matriz, const char *nombre) {
     if (matriz == NULL) {
@@ -132,12 +130,11 @@ int main(void) {
                 resta(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            /*case 7:
+            case 7:
                 printf("\n[INFO] Opcion MULTIPLICACION seleccionada.\n");
                 multiplicar(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-                */
             case 8:
                 printf("\nSaliendo del programa...\n");
                 break;
