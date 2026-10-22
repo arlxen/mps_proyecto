@@ -13,6 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: List repository files
+        run: |
+          pwd
+          ls -la
+          find . -name "test_opmatrix.c"
+          find . -name "OPMATRIX.c"
+
       - name: Compile tests
         run: |
           gcc -Wall -Wextra -Wpedantic \
