@@ -79,12 +79,13 @@ int main(void) {
         printf("1. Introducir matriz por pantalla (A / B)\n");
         //printf("2. Cargar matriz desde archivo (A / B)\n");
         //printf("3. Guardar matriz en archivo\n");
-        printf("2. Mostrar matrices por pantalla\n");
-        printf("3. Sumar matrices\n");
-        printf("4. Restar matrices\n");
-        printf("5. Multiplicar matrices\n");
-        //printf("6. Multiplicar por un escalar\n");
-        printf("6. Salir\n");
+        printf("4. Mostrar matrices por pantalla\n");
+        printf("5. Sumar matrices\n");
+        printf("6. Restar matrices\n");
+        printf("7. Multiplicar matrices\n");
+        printf("8. Multiplicar por un escalar\n");
+        printf("9. Matriz simetrica\n");
+        printf("10. Salir\n");
         printf("========================================\n");
         printf("Seleccione una opcion: ");
 
@@ -108,41 +109,133 @@ int main(void) {
                     while (getchar() != '\n');
                 }
                 break;
-            /*case 2:
+                /*
+            case 2: {
+                int seleccionMatriz = 0;
                 printf("\n[INFO] Opcion Cargar matriz desde archivo seleccionada.\n");
+                printf("¿En que matriz deseas cargar los datos? (1 para Matriz A, 2 para Matriz B): ");
+
+                if (scanf("%d", &seleccionMatriz) == 1) {
+                    if (seleccionMatriz == 1) {
+                        cargarMatriz(matrizA, 'A');
+                    } else if (seleccionMatriz == 2) {
+                        cargarMatriz(matrizB, 'B');
+                    } else {
+                        printf("\n[ERROR] Seleccion de matriz no valida.\n");
+                    }
+                } else {
+                    while (getchar() != '\n'); // Limpiar búfer
+                    printf("\n[ERROR] Opcion no valida.\n");
+                }
                 break;
-            case 3:
+            }
+            case 3: {
+                int seleccionMatriz = 0;
                 printf("\n[INFO] Opcion Guardar matriz en archivo seleccionada.\n");
+                printf("¿Que matriz deseas guardar? (1 para Matriz A, 2 para Matriz B, 3 para Matriz Resultado): ");
+
+                if (scanf("%d", &seleccionMatriz) == 1) {
+                    if (seleccionMatriz == 1) {
+                        guardarMatriz(matrizA, 'A');
+                    } else if (seleccionMatriz == 2) {
+                        guardarMatriz(matrizB, 'B');
+                    } else if (seleccionMatriz == 3) {
+                        guardarMatriz(matrizR, 'R');
+                    } else {
+                        printf("\n[ERROR] Seleccion de matriz no valida.\n");
+                    }
+                } else {
+                    while (getchar() != '\n'); // Limpiar búfer
+                    printf("\n[ERROR] Opcion no valida.\n");
+                }
                 break;
-                */
-            case 2:
+            }
+            */
+            case 4:
                 printf("\n[INFO] Opcion Mostrar matrices seleccionada.\n");
                 mostrarMatriz(matrizA, "A");
                 mostrarMatriz(matrizB, "B");
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 3:
+            case 5:
                 printf("\n[INFO] Opcion SUMA seleccionada.\n");
                 sumar(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 4:
+            case 6:
                 printf("\n[INFO] Opcion RESTA seleccionada.\n");
                 resta(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            case 5:
+            case 7:
                 printf("\n[INFO] Opcion MULTIPLICACION seleccionada.\n");
                 multiplicar(matrizA, matrizB, matrizR);
                 mostrarMatriz(matrizR, "Resultado (R)");
                 break;
-            /*case 8:
-                printf("\n[INFO] Opcion MULTIPLICAR POR UN ESCALAR seleccionada.\n");
-                multiplicar(matrizA, matrizB, matrizR);
-                mostrarMatriz(matrizR, "Resultado (R)");
+            case 8: {
+                int k = 0;
+                int seleccionMatriz = 0;
+
+                printf("\n[INFO] Opcion PRODUCTO ESCALAR seleccionada.\n");
+                printf("¿Que matriz deseas multiplicar? (1 para Matriz A, 2 para Matriz B): ");
+
+                if (scanf("%d", &seleccionMatriz) == 1 && (seleccionMatriz == 1 || seleccionMatriz == 2)) {
+                    printf("Introduce el valor del escalar (k): ");
+
+                    if (scanf("%d", &k) == 1) {
+                        if (seleccionMatriz == 1) {
+                            productoEscalar(matrizA, k, matrizR);
+                            mostrarMatriz(matrizR, "Resultado (R = k * A)");
+                        } else {
+                            productoEscalar(matrizB, k, matrizR);
+                            mostrarMatriz(matrizR, "Resultado (R = k * B)");
+                        }
+                    } else {
+                        while (getchar() != '\n'); // Limpiar búfer
+                        printf("\n[ERROR] Escalar invalido.\n");
+                    }
+                } else {
+                    while (getchar() != '\n'); // Limpiar búfer si meten opción no válida o carácter
+                    printf("\n[ERROR] Seleccion de matriz no valida.\n");
+                }
                 break;
-                */
-            case 6:
+            }
+            /*
+            case 9: {
+                int seleccionMatriz = 0;
+                printf("\n[INFO] Opcion MATRIZ SIMÉTRICA seleccionada.\n");
+                printf("¿Que matriz deseas evaluar? (1 para Matriz A, 2 para Matriz B): ");
+
+                if (scanf("%d", &seleccionMatriz) == 1) {
+                    int resultado = 0;
+
+                    if (seleccionMatriz == 1) {
+                        resultado = esSimetrica(matrizA);
+                        printf("\n--- Evaluacion de Matriz A ---\n");
+                    } else if (seleccionMatriz == 2) {
+                        resultado = esSimetrica(matrizB);
+                        printf("\n--- Evaluacion de Matriz B ---\n");
+                    } else {
+                        printf("\n[ERROR] Seleccion de matriz no valida.\n");
+                        break;
+                    }
+
+                    if (resultado == 1) {
+                        printf("[RESULTADO] La matriz ES simetrica.\n");
+                    } else if (resultado == 0) {
+                        printf("[RESULTADO] La matriz NO es simetrica.\n");
+                    } else {
+                        printf("[ERROR] La matriz proporcionada es nula.\n");
+                    }
+
+                } else {
+                    while (getchar() != '\n'); // Limpiar búfer en caso de entrada no numérica
+                    printf("\n[ERROR] Opcion no valida.\n");
+                }
+                break;
+            }
+            */
+            case 10:
                 printf("\nSaliendo del programa...\n");
                 break;
 
@@ -151,7 +244,7 @@ int main(void) {
                 break;
         }
 
-    } while (opcion != 8);
+    } while (opcion != 10);
 
     return EXIT_SUCCESS;
 }
